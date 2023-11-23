@@ -31,5 +31,20 @@ func (l *LinkedList) Append(element int) {
 		}
 	}
 	l.size++
+}
 
+func (l *LinkedList) Prepend(element int) {
+	if l.root == nil {
+		l.root = &node{
+			value: element,
+			next:  nil,
+		}
+	} else {
+		temp := l.root.next
+		l.root = &node{
+			value: element,
+			next:  temp,
+		}
+	}
+	l.size++
 }

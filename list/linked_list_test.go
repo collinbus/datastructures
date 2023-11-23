@@ -10,7 +10,26 @@ func TestLinkedListAppend(t *testing.T) {
 	linkedList.Append(2)
 	linkedList.Append(3)
 
-	if linkedList.size != 3 {
+	if linkedList.size != expectedSize {
 		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.size)
+	}
+}
+
+func TestLinkedListPrepend(t *testing.T) {
+	linkedList := NewLinkedList()
+	expectedSize := 4
+	expectedRoot := 0
+	linkedList.Append(1)
+	linkedList.Append(2)
+	linkedList.Append(3)
+
+	linkedList.Prepend(expectedRoot)
+
+	if linkedList.size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.size)
+	}
+	rootValue := linkedList.root.value
+	if rootValue != expectedRoot {
+		t.Fatalf("Root element should be %d but was %d", expectedRoot, rootValue)
 	}
 }
