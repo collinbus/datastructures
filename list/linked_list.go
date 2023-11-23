@@ -1,73 +1,73 @@
 package list
 
 type LinkedList struct {
-	root *node
-	size int
+	Root *Node
+	Size int
 }
 
 func NewLinkedList() *LinkedList {
 	return &LinkedList{}
 }
 
-type node struct {
-	value int
-	next  *node
+type Node struct {
+	Value int
+	Next  *Node
 }
 
 func (l *LinkedList) Append(element int) {
-	if l.size == 0 {
+	if l.Size == 0 {
 		l.Prepend(element)
 		return
 	} else {
-		current := l.root
-		for i := 1; i < l.size; i++ {
-			current = current.next
+		current := l.Root
+		for i := 1; i < l.Size; i++ {
+			current = current.Next
 		}
-		current.next = &node{
-			value: element,
-			next:  nil,
+		current.Next = &Node{
+			Value: element,
+			Next:  nil,
 		}
 	}
-	l.size++
+	l.Size++
 }
 
 func (l *LinkedList) Prepend(element int) {
-	var next *node
-	if l.root == nil {
+	var next *Node
+	if l.Root == nil {
 		next = nil
-	} else if l.root.next != nil {
-		next = l.root.next
+	} else if l.Root.Next != nil {
+		next = l.Root.Next
 	} else {
-		next = l.root
+		next = l.Root
 	}
-	l.root = &node{
-		value: element,
-		next:  next,
+	l.Root = &Node{
+		Value: element,
+		Next:  next,
 	}
-	l.size++
+	l.Size++
 }
 
 func (l *LinkedList) Get(index int) int {
-	current := l.root
+	current := l.Root
 	for i := 0; i < index; i++ {
-		current = current.next
+		current = current.Next
 	}
-	return current.value
+	return current.Value
 }
 
 func (l *LinkedList) Insert(element int, index int) {
-	if l.size == 0 {
+	if l.Size == 0 {
 		l.Prepend(element)
 		return
 	}
-	current := l.root
+	current := l.Root
 	for i := 0; i < index; i++ {
-		current = current.next
+		current = current.Next
 	}
-	current.next = &node{
-		value: current.value,
-		next:  current.next,
+	current.Next = &Node{
+		Value: current.Value,
+		Next:  current.Next,
 	}
-	current.value = element
-	l.size++
+	current.Value = element
+	l.Size++
 }
