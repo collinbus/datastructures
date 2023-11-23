@@ -112,6 +112,7 @@ func (d *DoublyLinkedList) Prepend(element int) {
 	}
 	if d.Head != nil {
 		current.Next = d.Head
+		current.Next.Prev = current
 	} else {
 		d.Tail = current
 	}
@@ -136,13 +137,13 @@ func (d *DoublyLinkedList) Insert(element int, index int) {
 	for i := 0; i < index; i++ {
 		current = current.Next
 	}
-	val := current.Value
-	current.Value = element
-	current.Next = &DoublyNode{
-		Value: val,
-		Next:  current.Next,
-		Prev:  current,
+	node := &DoublyNode{
+		Value: element,
+		Next:  current,
+		Prev:  current.Prev,
 	}
+	node.Next.Prev = node
+	node.Prev.Next = node
 	if index == d.Size-1 {
 		d.Tail = current.Next
 	}

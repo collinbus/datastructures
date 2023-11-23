@@ -265,3 +265,46 @@ func TestDoublyLinkedListInsertBack(t *testing.T) {
 		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
 	}
 }
+
+func TestDoublyLinkedListNodeBindings(t *testing.T) {
+	linkedList := NewDoublyLinkedList()
+	elements := [5]int{10, 20, 30, 40, 50}
+
+	linkedList.Append(20)
+	linkedList.Append(40)
+	linkedList.Insert(10, 0)
+	linkedList.Append(50)
+	linkedList.Insert(30, 2)
+
+	if !nodeBindingsCorrect(linkedList, elements) {
+		t.Fatal("The bindings of the linked list are wrongly configured")
+	}
+}
+
+func nodeBindingsCorrect(list *DoublyLinkedList, elements [5]int) bool {
+	current := list.Head
+	if list.Head.Value != elements[0] {
+		return false
+	}
+	if list.Tail.Value != elements[len(elements)-1] {
+		return false
+	}
+	for i := 0; i < len(elements); i++ {
+		if current.Value != elements[i] {
+			return false
+		}
+		if i == 0 && current.Prev != nil {
+			return false
+		} else if i == len(elements)-1 && current.Next != nil {
+			return false
+		}
+		if i > 0 && current.Prev.Value != elements[i-1] {
+			return false
+		}
+		if i < len(elements)-1 && current.Next.Value != elements[i+1] {
+			return false
+		}
+		current = current.Next
+	}
+	return true
+}
