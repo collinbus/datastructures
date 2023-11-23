@@ -89,3 +89,21 @@ func TestLinkedListInsert(t *testing.T) {
 		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.size)
 	}
 }
+
+func TestLinkedListInsertFront(t *testing.T) {
+	linkedList := NewLinkedList()
+	expectedElement := 4
+	expectedSize := 1
+
+	linkedList.Insert(expectedElement, 0)
+
+	element := linkedList.Get(0)
+
+	if element != expectedElement {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", expectedElement, element)
+	}
+
+	if linkedList.size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.size)
+	}
+}

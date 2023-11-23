@@ -56,6 +56,10 @@ func (l *LinkedList) Get(index int) int {
 }
 
 func (l *LinkedList) Insert(element int, index int) {
+	if l.size == 0 {
+		l.Prepend(element)
+		return
+	}
 	current := l.root
 	for i := 0; i < index; i++ {
 		current = current.next
