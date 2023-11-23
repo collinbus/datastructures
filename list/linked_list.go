@@ -132,6 +132,9 @@ func (d *DoublyLinkedList) Insert(element int, index int) {
 	if index == 0 {
 		d.Prepend(element)
 		return
+	} else if index == d.Size-1 {
+		d.Append(element)
+		return
 	}
 	current := d.Head
 	for i := 0; i < index; i++ {
@@ -144,9 +147,6 @@ func (d *DoublyLinkedList) Insert(element int, index int) {
 	}
 	node.Next.Prev = node
 	node.Prev.Next = node
-	if index == d.Size-1 {
-		d.Tail = current.Next
-	}
 	d.Size++
 }
 

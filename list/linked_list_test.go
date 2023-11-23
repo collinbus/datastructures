@@ -253,11 +253,11 @@ func TestDoublyLinkedListInsertBack(t *testing.T) {
 	element := linkedList.Get(2)
 	next := linkedList.Get(3)
 
-	if element != expectedElement {
+	if element != original {
 		t.Fatalf("Expected element at index 2 should be %d but was %d", expectedElement, element)
 	}
 
-	if next != original {
+	if next != expectedElement {
 		t.Fatalf("Expected element at index 3 should be %d but was %d", expectedElement, next)
 	}
 
@@ -268,20 +268,21 @@ func TestDoublyLinkedListInsertBack(t *testing.T) {
 
 func TestDoublyLinkedListNodeBindings(t *testing.T) {
 	linkedList := NewDoublyLinkedList()
-	elements := [5]int{10, 20, 30, 40, 50}
+	elements := [6]int{10, 20, 30, 40, 50, 60}
 
 	linkedList.Append(20)
 	linkedList.Append(40)
 	linkedList.Insert(10, 0)
 	linkedList.Append(50)
 	linkedList.Insert(30, 2)
+	linkedList.Insert(60, 4)
 
 	if !nodeBindingsCorrect(linkedList, elements) {
 		t.Fatal("The bindings of the linked list are wrongly configured")
 	}
 }
 
-func nodeBindingsCorrect(list *DoublyLinkedList, elements [5]int) bool {
+func nodeBindingsCorrect(list *DoublyLinkedList, elements [6]int) bool {
 	current := list.Head
 	if list.Head.Value != elements[0] {
 		return false
