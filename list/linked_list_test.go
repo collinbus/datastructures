@@ -3,7 +3,7 @@ package list
 import "testing"
 
 func TestLinkedListAppend(t *testing.T) {
-	linkedList := NewLinkedList()
+	linkedList := NewSinglyLinkedList()
 	expectedSize := 3
 
 	linkedList.Append(1)
@@ -16,7 +16,7 @@ func TestLinkedListAppend(t *testing.T) {
 }
 
 func TestLinkedListPrepend(t *testing.T) {
-	linkedList := NewLinkedList()
+	linkedList := NewSinglyLinkedList()
 	expectedSize := 4
 	expectedRoot := 0
 	linkedList.Append(1)
@@ -35,7 +35,7 @@ func TestLinkedListPrepend(t *testing.T) {
 }
 
 func TestLinkedListPrependWithEmptyValue(t *testing.T) {
-	linkedList := NewLinkedList()
+	linkedList := NewSinglyLinkedList()
 	expectedSize := 1
 	expectedRoot := 5
 
@@ -51,7 +51,7 @@ func TestLinkedListPrependWithEmptyValue(t *testing.T) {
 }
 
 func TestLinkedListGet(t *testing.T) {
-	linkedList := NewLinkedList()
+	linkedList := NewSinglyLinkedList()
 	expectedElement := 2
 	linkedList.Append(1)
 	linkedList.Append(2)
@@ -65,7 +65,7 @@ func TestLinkedListGet(t *testing.T) {
 }
 
 func TestLinkedListInsert(t *testing.T) {
-	linkedList := NewLinkedList()
+	linkedList := NewSinglyLinkedList()
 	original := 2
 	expectedElement := 4
 	expectedSize := 4
@@ -91,7 +91,7 @@ func TestLinkedListInsert(t *testing.T) {
 }
 
 func TestLinkedListInsertFront(t *testing.T) {
-	linkedList := NewLinkedList()
+	linkedList := NewSinglyLinkedList()
 	expectedElement := 4
 	expectedSize := 1
 
@@ -109,7 +109,7 @@ func TestLinkedListInsertFront(t *testing.T) {
 }
 
 func TestLinkedListInsertBack(t *testing.T) {
-	linkedList := NewLinkedList()
+	linkedList := NewSinglyLinkedList()
 	original := 3
 	expectedElement := 4
 	expectedSize := 4

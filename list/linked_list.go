@@ -1,12 +1,12 @@
 package list
 
-type LinkedList struct {
+type SinglyLinkedList struct {
 	Root *SinglyNode
 	Size int
 }
 
-func NewLinkedList() *LinkedList {
-	return &LinkedList{}
+func NewSinglyLinkedList() *SinglyLinkedList {
+	return &SinglyLinkedList{}
 }
 
 type SinglyNode struct {
@@ -14,7 +14,7 @@ type SinglyNode struct {
 	Next  *SinglyNode
 }
 
-func (l *LinkedList) Append(element int) {
+func (l *SinglyLinkedList) Append(element int) {
 	if l.Size == 0 {
 		l.Prepend(element)
 		return
@@ -31,7 +31,7 @@ func (l *LinkedList) Append(element int) {
 	l.Size++
 }
 
-func (l *LinkedList) Prepend(element int) {
+func (l *SinglyLinkedList) Prepend(element int) {
 	var next *SinglyNode
 	if l.Root == nil {
 		next = nil
@@ -47,7 +47,7 @@ func (l *LinkedList) Prepend(element int) {
 	l.Size++
 }
 
-func (l *LinkedList) Get(index int) int {
+func (l *SinglyLinkedList) Get(index int) int {
 	current := l.Root
 	for i := 0; i < index; i++ {
 		current = current.Next
@@ -55,7 +55,7 @@ func (l *LinkedList) Get(index int) int {
 	return current.Value
 }
 
-func (l *LinkedList) Insert(element int, index int) {
+func (l *SinglyLinkedList) Insert(element int, index int) {
 	if l.Size == 0 {
 		l.Prepend(element)
 		return
