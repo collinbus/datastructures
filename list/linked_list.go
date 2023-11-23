@@ -54,3 +54,16 @@ func (l *LinkedList) Get(index int) int {
 	}
 	return current.value
 }
+
+func (l *LinkedList) Insert(element int, index int) {
+	current := l.root
+	for i := 0; i < index; i++ {
+		current = current.next
+	}
+	current.next = &node{
+		value: current.value,
+		next:  current.next,
+	}
+	current.value = element
+	l.size++
+}
