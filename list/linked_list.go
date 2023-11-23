@@ -15,11 +15,9 @@ type node struct {
 }
 
 func (l *LinkedList) Append(element int) {
-	if l.root == nil {
-		l.root = &node{
-			value: element,
-			next:  nil,
-		}
+	if l.size == 0 {
+		l.Prepend(element)
+		return
 	} else {
 		current := l.root
 		for i := 1; i < l.size; i++ {
@@ -34,17 +32,17 @@ func (l *LinkedList) Append(element int) {
 }
 
 func (l *LinkedList) Prepend(element int) {
+	var next *node
 	if l.root == nil {
-		l.root = &node{
-			value: element,
-			next:  nil,
-		}
+		next = nil
+	} else if l.root.next != nil {
+		next = l.root.next
 	} else {
-		temp := l.root.next
-		l.root = &node{
-			value: element,
-			next:  temp,
-		}
+		next = l.root
+	}
+	l.root = &node{
+		value: element,
+		next:  next,
 	}
 	l.size++
 }
