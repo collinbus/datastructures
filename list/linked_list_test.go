@@ -49,3 +49,17 @@ func TestLinkedListPrependWithEmptyValue(t *testing.T) {
 		t.Fatalf("Root element should be %d but was %d", expectedRoot, rootValue)
 	}
 }
+
+func TestLinkedListGet(t *testing.T) {
+	linkedList := NewLinkedList()
+	expectedElement := 2
+	linkedList.Append(1)
+	linkedList.Append(2)
+	linkedList.Append(3)
+
+	element := linkedList.Get(1)
+
+	if element != expectedElement {
+		t.Fatalf("Expected element should be %d but was %d", expectedElement, element)
+	}
+}

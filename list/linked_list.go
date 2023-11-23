@@ -46,3 +46,11 @@ func (l *LinkedList) Prepend(element int) {
 	}
 	l.size++
 }
+
+func (l *LinkedList) Get(index int) int {
+	current := l.root
+	for i := 0; i < index; i++ {
+		current = current.next
+	}
+	return current.value
+}
