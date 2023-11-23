@@ -1,7 +1,7 @@
 package list
 
 type LinkedList struct {
-	Root *Node
+	Root *SinglyNode
 	Size int
 }
 
@@ -9,9 +9,9 @@ func NewLinkedList() *LinkedList {
 	return &LinkedList{}
 }
 
-type Node struct {
+type SinglyNode struct {
 	Value int
-	Next  *Node
+	Next  *SinglyNode
 }
 
 func (l *LinkedList) Append(element int) {
@@ -23,7 +23,7 @@ func (l *LinkedList) Append(element int) {
 		for i := 1; i < l.Size; i++ {
 			current = current.Next
 		}
-		current.Next = &Node{
+		current.Next = &SinglyNode{
 			Value: element,
 			Next:  nil,
 		}
@@ -32,7 +32,7 @@ func (l *LinkedList) Append(element int) {
 }
 
 func (l *LinkedList) Prepend(element int) {
-	var next *Node
+	var next *SinglyNode
 	if l.Root == nil {
 		next = nil
 	} else if l.Root.Next != nil {
@@ -40,7 +40,7 @@ func (l *LinkedList) Prepend(element int) {
 	} else {
 		next = l.Root
 	}
-	l.Root = &Node{
+	l.Root = &SinglyNode{
 		Value: element,
 		Next:  next,
 	}
@@ -64,7 +64,7 @@ func (l *LinkedList) Insert(element int, index int) {
 	for i := 0; i < index; i++ {
 		current = current.Next
 	}
-	current.Next = &Node{
+	current.Next = &SinglyNode{
 		Value: current.Value,
 		Next:  current.Next,
 	}
