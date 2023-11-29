@@ -5,6 +5,9 @@ type LinkedList interface {
 	Prepend(element int)
 	Get(index int) int
 	Insert(element int, index int)
+	RemoveAt(index int)
+	Poll() int
+	Pop() int
 }
 
 type SinglyLinkedList struct {
