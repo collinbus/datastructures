@@ -76,6 +76,10 @@ func (l *SinglyLinkedList) Insert(element int, index int) {
 }
 
 func (l *SinglyLinkedList) RemoveAt(index int) {
+	if index == 0 {
+		l.Poll()
+		return
+	}
 	current := l.Root
 	for i := 0; i < index-1; i++ {
 		current = current.Next
