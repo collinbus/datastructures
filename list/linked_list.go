@@ -92,6 +92,9 @@ func (l *SinglyLinkedList) RemoveAt(index int) {
 }
 
 func (l *SinglyLinkedList) Poll() int {
+	if l.Size == 1 {
+		return l.Pop()
+	}
 	currentVal := l.Root.Value
 	l.Root = l.Root.Next
 	l.Size -= 1
@@ -99,6 +102,12 @@ func (l *SinglyLinkedList) Poll() int {
 }
 
 func (l *SinglyLinkedList) Pop() int {
+	if l.Size == 1 {
+		current := l.Root.Value
+		l.Root = nil
+		l.Size -= 1
+		return current
+	}
 	current := l.Root
 	for i := 0; i < l.Size-2; i++ {
 		current = current.Next

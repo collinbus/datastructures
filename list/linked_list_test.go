@@ -271,6 +271,38 @@ func TestSinglyLinkedListPop(t *testing.T) {
 	}
 }
 
+func TestSinglyLinkedListPopSingle(t *testing.T) {
+	linkedList := NewSinglyLinkedList()
+	linkedList.Append(1)
+	expectedSize := 0
+	expectedElement := 1
+
+	element := linkedList.Pop()
+
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+	if element != expectedElement {
+		t.Fatalf("Returned element should be %d but was %d", expectedElement, element)
+	}
+}
+
+func TestSinglyLinkedListPollSingle(t *testing.T) {
+	linkedList := NewSinglyLinkedList()
+	linkedList.Append(1)
+	expectedSize := 0
+	expectedElement := 1
+
+	element := linkedList.Pop()
+
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+	if element != expectedElement {
+		t.Fatalf("Returned element should be %d but was %d", expectedElement, element)
+	}
+}
+
 func TestSinglyLinkedListRemoveLast(t *testing.T) {
 	linkedList := NewSinglyLinkedList()
 	linkedList.Append(1)
