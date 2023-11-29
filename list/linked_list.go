@@ -91,6 +91,17 @@ func (l *SinglyLinkedList) Poll() int {
 	return currentVal
 }
 
+func (l *SinglyLinkedList) Pop() int {
+	current := l.Root
+	for i := 0; i < l.Size-2; i++ {
+		current = current.Next
+	}
+	value := current.Next.Value
+	current.Next = nil
+	l.Size -= 1
+	return value
+}
+
 func NewSinglyLinkedList() *SinglyLinkedList {
 	return &SinglyLinkedList{}
 }
