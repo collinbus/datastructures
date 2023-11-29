@@ -84,6 +84,13 @@ func (l *SinglyLinkedList) RemoveAt(index int) {
 	l.Size -= 1
 }
 
+func (l *SinglyLinkedList) Poll() int {
+	currentVal := l.Root.Value
+	l.Root = l.Root.Next
+	l.Size -= 1
+	return currentVal
+}
+
 func NewSinglyLinkedList() *SinglyLinkedList {
 	return &SinglyLinkedList{}
 }
