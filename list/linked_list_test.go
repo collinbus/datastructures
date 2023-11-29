@@ -134,6 +134,38 @@ func TestSinglyLinkedListInsertBack(t *testing.T) {
 	}
 }
 
+func TestSinglyLinkedListRemoveMiddle(t *testing.T) {
+	linkedList := NewSinglyLinkedList()
+	linkedList.Append(1)
+	linkedList.Append(2)
+	linkedList.Append(3)
+	linkedList.Append(4)
+	linkedList.Append(5)
+	expectedSize := 4
+
+	linkedList.RemoveAt(2)
+
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+	element := linkedList.Get(0)
+	if element != 1 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 1, element)
+	}
+	element = linkedList.Get(1)
+	if element != 2 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 2, element)
+	}
+	element = linkedList.Get(2)
+	if element != 4 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 4, element)
+	}
+	element = linkedList.Get(3)
+	if element != 5 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 5, element)
+	}
+}
+
 func TestDoubyLinkedListAppend(t *testing.T) {
 	linkedList := NewDoublyLinkedList()
 	expectedSize := 3

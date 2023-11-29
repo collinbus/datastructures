@@ -75,6 +75,15 @@ func (l *SinglyLinkedList) Insert(element int, index int) {
 	l.Size++
 }
 
+func (l *SinglyLinkedList) RemoveAt(index int) {
+	current := l.Root
+	for i := 0; i < index-1; i++ {
+		current = current.Next
+	}
+	current.Next = current.Next.Next
+	l.Size -= 1
+}
+
 func NewSinglyLinkedList() *SinglyLinkedList {
 	return &SinglyLinkedList{}
 }
