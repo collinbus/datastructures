@@ -495,7 +495,7 @@ func TestSinglyLinkedListPrependingMultipleItems(t *testing.T) {
 
 func TestDoublyLinkedListNodeBindings(t *testing.T) {
 	linkedList := NewDoublyLinkedList[int]()
-	elements := [6]int{10, 20, 30, 40, 50, 60}
+	elements := []int{10, 20, 30, 40, 50, 60}
 
 	linkedList.Append(20)
 	linkedList.Append(40)
@@ -509,7 +509,240 @@ func TestDoublyLinkedListNodeBindings(t *testing.T) {
 	}
 }
 
-func nodeBindingsCorrect(list *DoublyLinkedList[int], elements [6]int) bool {
+func TestDoublyLinkedListRemoveMiddle(t *testing.T) {
+	linkedList := NewDoublyLinkedList[int]()
+	linkedList.Append(1)
+	linkedList.Append(2)
+	linkedList.Append(3)
+	linkedList.Append(4)
+	linkedList.Append(5)
+	elements := []int{1, 2, 4, 5}
+	expectedSize := 4
+
+	linkedList.RemoveAt(2)
+
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+	element := linkedList.Get(0)
+	if element != 1 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 1, element)
+	}
+	element = linkedList.Get(1)
+	if element != 2 {
+		t.Fatalf("Expected element at index 1 should be %d but was %d", 2, element)
+	}
+	element = linkedList.Get(2)
+	if element != 4 {
+		t.Fatalf("Expected element at index 2 should be %d but was %d", 4, element)
+	}
+	element = linkedList.Get(3)
+	if element != 5 {
+		t.Fatalf("Expected element at index 3 should be %d but was %d", 5, element)
+	}
+	if !nodeBindingsCorrect(linkedList, elements) {
+		t.Fatal("The bindings of the linked list are wrongly configured")
+	}
+}
+
+func TestDoublyLinkedListPoll(t *testing.T) {
+	linkedList := NewDoublyLinkedList[int]()
+	linkedList.Append(1)
+	linkedList.Append(2)
+	linkedList.Append(3)
+	linkedList.Append(4)
+	linkedList.Append(5)
+	expectedSize := 4
+	expectedElement := 1
+	elements := []int{2, 3, 4, 5}
+
+	element := linkedList.Poll()
+
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+	if element != expectedElement {
+		t.Fatalf("Returned element should be %d but was %d", expectedElement, element)
+	}
+	element = linkedList.Get(0)
+	if element != 2 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 2, element)
+	}
+	element = linkedList.Get(1)
+	if element != 3 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 3, element)
+	}
+	element = linkedList.Get(2)
+	if element != 4 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 4, element)
+	}
+	element = linkedList.Get(3)
+	if element != 5 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 5, element)
+	}
+	if !nodeBindingsCorrect(linkedList, elements) {
+		t.Fatal("The bindings of the linked list are wrongly configured")
+	}
+}
+
+func TestDoublyLinkedListRemoveFirst(t *testing.T) {
+	linkedList := NewDoublyLinkedList[int]()
+	linkedList.Append(1)
+	linkedList.Append(2)
+	linkedList.Append(3)
+	linkedList.Append(4)
+	linkedList.Append(5)
+	expectedSize := 4
+	elements := []int{2, 3, 4, 5}
+
+	linkedList.RemoveAt(0)
+
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+
+	element := linkedList.Get(0)
+	if element != 2 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 2, element)
+	}
+	element = linkedList.Get(1)
+	if element != 3 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 3, element)
+	}
+	element = linkedList.Get(2)
+	if element != 4 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 4, element)
+	}
+	element = linkedList.Get(3)
+	if element != 5 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 5, element)
+	}
+	if !nodeBindingsCorrect(linkedList, elements) {
+		t.Fatal("The bindings of the linked list are wrongly configured")
+	}
+}
+
+func TestDoublyLinkedListPop(t *testing.T) {
+	linkedList := NewDoublyLinkedList[int]()
+	linkedList.Append(1)
+	linkedList.Append(2)
+	linkedList.Append(3)
+	linkedList.Append(4)
+	linkedList.Append(5)
+	expectedSize := 4
+	expectedElement := 5
+	elements := []int{1, 2, 3, 4}
+
+	element := linkedList.Pop()
+
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+	if element != expectedElement {
+		t.Fatalf("Returned element should be %d but was %d", expectedElement, element)
+	}
+	element = linkedList.Get(0)
+	if element != 1 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 1, element)
+	}
+	element = linkedList.Get(1)
+	if element != 2 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 2, element)
+	}
+	element = linkedList.Get(2)
+	if element != 3 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 3, element)
+	}
+	element = linkedList.Get(3)
+	if element != 4 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 4, element)
+	}
+	if !nodeBindingsCorrect(linkedList, elements) {
+		t.Fatal("The bindings of the linked list are wrongly configured")
+	}
+}
+
+func TestDoublyLinkedListPopSingle(t *testing.T) {
+	linkedList := NewDoublyLinkedList[int]()
+	linkedList.Append(1)
+	expectedSize := 0
+	expectedElement := 1
+	elements := []int{}
+
+	element := linkedList.Pop()
+
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+	if element != expectedElement {
+		t.Fatalf("Returned element should be %d but was %d", expectedElement, element)
+	}
+	if !nodeBindingsCorrect(linkedList, elements) {
+		t.Fatal("The bindings of the linked list are wrongly configured")
+	}
+}
+
+func TestDoublyLinkedListPollSingle(t *testing.T) {
+	linkedList := NewDoublyLinkedList[int]()
+	linkedList.Append(1)
+	expectedSize := 0
+	expectedElement := 1
+	elements := []int{}
+
+	element := linkedList.Pop()
+
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+	if element != expectedElement {
+		t.Fatalf("Returned element should be %d but was %d", expectedElement, element)
+	}
+	if !nodeBindingsCorrect(linkedList, elements) {
+		t.Fatal("The bindings of the linked list are wrongly configured")
+	}
+}
+
+func TestSinglyDoublyListRemoveLast(t *testing.T) {
+	linkedList := NewDoublyLinkedList[int]()
+	linkedList.Append(1)
+	linkedList.Append(2)
+	linkedList.Append(3)
+	linkedList.Append(4)
+	linkedList.Append(5)
+	expectedSize := 4
+	elements := []int{1, 2, 3, 4}
+
+	linkedList.RemoveAt(4)
+
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+
+	element := linkedList.Get(0)
+	if element != 1 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 1, element)
+	}
+	element = linkedList.Get(1)
+	if element != 2 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 2, element)
+	}
+	element = linkedList.Get(2)
+	if element != 3 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 3, element)
+	}
+	element = linkedList.Get(3)
+	if element != 4 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 4, element)
+	}
+	if !nodeBindingsCorrect(linkedList, elements) {
+		t.Fatal("The bindings of the linked list are wrongly configured")
+	}
+}
+
+func nodeBindingsCorrect(list *DoublyLinkedList[int], elements []int) bool {
+	if len(elements) == 0 {
+		return list.Head == nil && list.Tail == nil
+	}
 	current := list.Head
 	if list.Head.Value != elements[0] {
 		return false

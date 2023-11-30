@@ -126,7 +126,7 @@ type DoublyLinkedList[T any] struct {
 	Size int
 }
 
-func (d *DoublyLinkedList[T]) Append(element int) {
+func (d *DoublyLinkedList[T]) Append(element T) {
 	if d.Size == 0 {
 		d.Prepend(element)
 		d.Tail = d.Head
@@ -145,7 +145,7 @@ func (d *DoublyLinkedList[T]) Append(element int) {
 	d.Size++
 }
 
-func (d *DoublyLinkedList[T]) Prepend(element int) {
+func (d *DoublyLinkedList[T]) Prepend(element T) {
 	current := &DoublyNode[T]{
 		Value: element,
 		Next:  nil,
@@ -161,7 +161,7 @@ func (d *DoublyLinkedList[T]) Prepend(element int) {
 	d.Size++
 }
 
-func (d *DoublyLinkedList[T]) Get(index int) int {
+func (d *DoublyLinkedList[T]) Get(index int) T {
 	current := d.Head
 	for i := 0; i < index; i++ {
 		current = current.Next
@@ -169,7 +169,7 @@ func (d *DoublyLinkedList[T]) Get(index int) int {
 	return current.Value
 }
 
-func (d *DoublyLinkedList[T]) Insert(element int, index int) {
+func (d *DoublyLinkedList[T]) Insert(element T, index int) {
 	if index == 0 {
 		d.Prepend(element)
 		return
@@ -191,6 +191,53 @@ func (d *DoublyLinkedList[T]) Insert(element int, index int) {
 	d.Size++
 }
 
+func (l *DoublyLinkedList[T]) RemoveAt(index int) {
+	if index == 0 {
+		l.Poll()
+		return
+	} else if index == (l.Size - 1) {
+		l.Pop()
+		return
+	}
+	current := l.Head
+	for i := 0; i < index-1; i++ {
+		current = current.Next
+	}
+	current.Next = current.Next.Next
+	current.Next.Prev = current
+	l.Size -= 1
+}
+
+func (l *DoublyLinkedList[T]) Poll() T {
+	if l.Size == 1 {
+		return l.Pop()
+	}
+	currentVal := l.Head.Value
+	l.Head = l.Head.Next
+	l.Head.Prev = nil
+	l.Size -= 1
+	return currentVal
+}
+
+func (l *DoublyLinkedList[T]) Pop() T {
+	if l.Size == 1 {
+		current := l.Head.Value
+		l.Head = nil
+		l.Tail = nil
+		l.Size -= 1
+		return current
+	}
+	current := l.Head
+	for i := 0; i < l.Size-2; i++ {
+		current = current.Next
+	}
+	value := current.Next.Value
+	current.Next = nil
+	l.Tail = current
+	l.Size -= 1
+	return value
+}
+
 func NewDoublyLinkedList[T any]() *DoublyLinkedList[T] {
 	return &DoublyLinkedList[T]{
 		Head: nil,
@@ -200,7 +247,7 @@ func NewDoublyLinkedList[T any]() *DoublyLinkedList[T] {
 }
 
 type DoublyNode[T any] struct {
-	Value int
+	Value T
 	Next  *DoublyNode[T]
 	Prev  *DoublyNode[T]
 }
