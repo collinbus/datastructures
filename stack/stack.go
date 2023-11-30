@@ -2,40 +2,40 @@ package stack
 
 import "datastructures/list"
 
-type Stack interface {
-	Push(element int)
-	Peek() int
-	Pop() int
+type Stack[T any] interface {
+	Push(element T)
+	Peek() T
+	Pop() T
 	Size() int
 	IsEmpty() bool
 }
 
-type DynamicStack struct {
-	elements *list.SinglyLinkedList[int]
+type DynamicStack[T any] struct {
+	elements *list.SinglyLinkedList[T]
 }
 
-func NewStack() *DynamicStack {
-	return &DynamicStack{
-		elements: list.NewSinglyLinkedList[int](),
+func NewStack[T any]() *DynamicStack[T] {
+	return &DynamicStack[T]{
+		elements: list.NewSinglyLinkedList[T](),
 	}
 }
 
-func (s *DynamicStack) Push(element int) {
+func (s *DynamicStack[T]) Push(element T) {
 	s.elements.Append(element)
 }
 
-func (s *DynamicStack) Peek() int {
+func (s *DynamicStack[T]) Peek() T {
 	return s.elements.Get(s.elements.Size - 1)
 }
 
-func (s *DynamicStack) Pop() int {
+func (s *DynamicStack[T]) Pop() T {
 	return s.elements.Pop()
 }
 
-func (s *DynamicStack) Size() int {
+func (s *DynamicStack[T]) Size() int {
 	return s.elements.Size
 }
 
-func (s *DynamicStack) IsEmpty() bool {
-	return s.Size() == 0
+func (s *DynamicStack[T]) IsEmpty() bool {
+	return s.elements.Size == 0
 }

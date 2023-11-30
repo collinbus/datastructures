@@ -3,7 +3,7 @@ package stack
 import "testing"
 
 func TestPush(t *testing.T) {
-	stack := NewStack()
+	stack := NewStack[int]()
 
 	stack.Push(1)
 	stack.Push(2)
@@ -18,7 +18,7 @@ func TestPush(t *testing.T) {
 }
 
 func TestPop(t *testing.T) {
-	stack := NewStack()
+	stack := NewStack[int]()
 
 	stack.Push(1)
 	stack.Push(2)
@@ -42,7 +42,7 @@ func TestPop(t *testing.T) {
 }
 
 func TestIsEmpty(t *testing.T) {
-	stack := NewStack()
+	stack := NewStack[int]()
 
 	isEmpty := stack.IsEmpty()
 
