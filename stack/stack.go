@@ -13,15 +13,15 @@ func NewStack() *Stack {
 }
 
 func (s *Stack) Push(element int) {
-	s.elements.Prepend(element)
+	s.elements.Append(element)
 }
 
 func (s *Stack) Peek() int {
-	return s.elements.Get(0)
+	return s.elements.Get(s.elements.Size - 1)
 }
 
 func (s *Stack) Pop() int {
-	return s.elements.Poll()
+	return s.elements.Pop()
 }
 
 func (s *Stack) Size() int {
