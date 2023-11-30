@@ -40,3 +40,13 @@ func TestPop(t *testing.T) {
 		t.Fatalf("expected size %d but was %d", expectedSize, size)
 	}
 }
+
+func TestIsEmpty(t *testing.T) {
+	stack := NewStack()
+
+	isEmpty := stack.IsEmpty()
+
+	if !isEmpty {
+		t.Fatal("stack is not empty but should be empty")
+	}
+}

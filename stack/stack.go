@@ -27,3 +27,7 @@ func (s *Stack) Pop() int {
 func (s *Stack) Size() int {
 	return s.elements.Size
 }
+
+func (s *Stack) IsEmpty() bool {
+	return s.Size() == 0
+}
