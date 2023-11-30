@@ -19,3 +19,11 @@ func (s *Stack) Push(element int) {
 func (s *Stack) Peek() int {
 	return s.elements.Get(0)
 }
+
+func (s *Stack) Pop() int {
+	return s.elements.Poll()
+}
+
+func (s *Stack) Size() int {
+	return s.elements.Size
+}
