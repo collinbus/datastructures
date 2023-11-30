@@ -41,8 +41,6 @@ func (l *SinglyLinkedList) Prepend(element int) {
 	var next *SinglyNode
 	if l.Root == nil {
 		next = nil
-	} else if l.Root.Next != nil {
-		next = l.Root.Next
 	} else {
 		next = l.Root
 	}

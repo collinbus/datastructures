@@ -468,6 +468,31 @@ func TestDoublyLinkedListInsertBack(t *testing.T) {
 	}
 }
 
+func TestSinglyLinkedListPrependingMultipleItems(t *testing.T) {
+	linkedList := NewSinglyLinkedList()
+	expectedSize := 3
+
+	linkedList.Prepend(1)
+	linkedList.Prepend(2)
+	linkedList.Prepend(3)
+
+	next := linkedList.Get(0)
+	if next != 3 {
+		t.Fatalf("Expected element at index 0 should be %d but was %d", 3, next)
+	}
+	next = linkedList.Get(1)
+	if next != 2 {
+		t.Fatalf("Expected element at index 1 should be %d but was %d", 2, next)
+	}
+	next = linkedList.Get(2)
+	if next != 1 {
+		t.Fatalf("Expected element at index 2 should be %d but was %d", 1, next)
+	}
+	if linkedList.Size != expectedSize {
+		t.Fatalf("Size should be %d but was %d", expectedSize, linkedList.Size)
+	}
+}
+
 func TestDoublyLinkedListNodeBindings(t *testing.T) {
 	linkedList := NewDoublyLinkedList()
 	elements := [6]int{10, 20, 30, 40, 50, 60}
