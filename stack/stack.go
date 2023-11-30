@@ -11,12 +11,12 @@ type Stack interface {
 }
 
 type DynamicStack struct {
-	elements *list.SinglyLinkedList
+	elements *list.SinglyLinkedList[int]
 }
 
 func NewStack() *DynamicStack {
 	return &DynamicStack{
-		elements: list.NewSinglyLinkedList(),
+		elements: list.NewSinglyLinkedList[int](),
 	}
 }
 

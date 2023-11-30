@@ -3,7 +3,7 @@ package list
 import "testing"
 
 func TestSinglyLinkedListAppend(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	expectedSize := 3
 
 	linkedList.Append(1)
@@ -16,7 +16,7 @@ func TestSinglyLinkedListAppend(t *testing.T) {
 }
 
 func TestSinglyLinkedListPrepend(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	expectedSize := 4
 	expectedRoot := 0
 	linkedList.Append(1)
@@ -35,7 +35,7 @@ func TestSinglyLinkedListPrepend(t *testing.T) {
 }
 
 func TestSinglyLinkedListPrependWithEmptyValue(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	expectedSize := 1
 	expectedRoot := 5
 
@@ -51,7 +51,7 @@ func TestSinglyLinkedListPrependWithEmptyValue(t *testing.T) {
 }
 
 func TestSinglyLinkedListGet(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	expectedElement := 2
 	linkedList.Append(1)
 	linkedList.Append(2)
@@ -65,7 +65,7 @@ func TestSinglyLinkedListGet(t *testing.T) {
 }
 
 func TestSinglyLinkedListInsert(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	original := 2
 	expectedElement := 4
 	expectedSize := 4
@@ -91,7 +91,7 @@ func TestSinglyLinkedListInsert(t *testing.T) {
 }
 
 func TestSinglyLinkedListInsertFront(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	expectedElement := 4
 	expectedSize := 1
 
@@ -109,7 +109,7 @@ func TestSinglyLinkedListInsertFront(t *testing.T) {
 }
 
 func TestSinglyLinkedListInsertBack(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	original := 3
 	expectedElement := 4
 	expectedSize := 4
@@ -135,7 +135,7 @@ func TestSinglyLinkedListInsertBack(t *testing.T) {
 }
 
 func TestSinglyLinkedListRemoveMiddle(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	linkedList.Append(1)
 	linkedList.Append(2)
 	linkedList.Append(3)
@@ -167,7 +167,7 @@ func TestSinglyLinkedListRemoveMiddle(t *testing.T) {
 }
 
 func TestSinglyLinkedListPoll(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	linkedList.Append(1)
 	linkedList.Append(2)
 	linkedList.Append(3)
@@ -203,7 +203,7 @@ func TestSinglyLinkedListPoll(t *testing.T) {
 }
 
 func TestSinglyLinkedListRemoveFirst(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	linkedList.Append(1)
 	linkedList.Append(2)
 	linkedList.Append(3)
@@ -236,7 +236,7 @@ func TestSinglyLinkedListRemoveFirst(t *testing.T) {
 }
 
 func TestSinglyLinkedListPop(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	linkedList.Append(1)
 	linkedList.Append(2)
 	linkedList.Append(3)
@@ -272,7 +272,7 @@ func TestSinglyLinkedListPop(t *testing.T) {
 }
 
 func TestSinglyLinkedListPopSingle(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	linkedList.Append(1)
 	expectedSize := 0
 	expectedElement := 1
@@ -288,7 +288,7 @@ func TestSinglyLinkedListPopSingle(t *testing.T) {
 }
 
 func TestSinglyLinkedListPollSingle(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	linkedList.Append(1)
 	expectedSize := 0
 	expectedElement := 1
@@ -304,7 +304,7 @@ func TestSinglyLinkedListPollSingle(t *testing.T) {
 }
 
 func TestSinglyLinkedListRemoveLast(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	linkedList.Append(1)
 	linkedList.Append(2)
 	linkedList.Append(3)
@@ -337,7 +337,7 @@ func TestSinglyLinkedListRemoveLast(t *testing.T) {
 }
 
 func TestDoubyLinkedListAppend(t *testing.T) {
-	linkedList := NewDoublyLinkedList()
+	linkedList := NewDoublyLinkedList[int]()
 	expectedSize := 3
 
 	linkedList.Append(1)
@@ -350,7 +350,7 @@ func TestDoubyLinkedListAppend(t *testing.T) {
 }
 
 func TestDoublyLinkedListPrepend(t *testing.T) {
-	linkedList := NewDoublyLinkedList()
+	linkedList := NewDoublyLinkedList[int]()
 	expectedSize := 4
 	expectedRoot := 0
 	linkedList.Append(1)
@@ -369,7 +369,7 @@ func TestDoublyLinkedListPrepend(t *testing.T) {
 }
 
 func TestDoublyLinkedListPrependWithEmptyValue(t *testing.T) {
-	linkedList := NewDoublyLinkedList()
+	linkedList := NewDoublyLinkedList[int]()
 	expectedSize := 1
 	expectedRoot := 5
 
@@ -385,7 +385,7 @@ func TestDoublyLinkedListPrependWithEmptyValue(t *testing.T) {
 }
 
 func TestDoublyLinkedListGet(t *testing.T) {
-	linkedList := NewDoublyLinkedList()
+	linkedList := NewDoublyLinkedList[int]()
 	expectedElement := 2
 	linkedList.Append(1)
 	linkedList.Append(2)
@@ -399,7 +399,7 @@ func TestDoublyLinkedListGet(t *testing.T) {
 }
 
 func TestDoublyLinkedListInsert(t *testing.T) {
-	linkedList := NewDoublyLinkedList()
+	linkedList := NewDoublyLinkedList[int]()
 	original := 2
 	expectedElement := 4
 	expectedSize := 4
@@ -425,7 +425,7 @@ func TestDoublyLinkedListInsert(t *testing.T) {
 }
 
 func TestDoublyLinkedListInsertFront(t *testing.T) {
-	linkedList := NewDoublyLinkedList()
+	linkedList := NewDoublyLinkedList[int]()
 	expectedElement := 4
 	expectedSize := 1
 
@@ -443,7 +443,7 @@ func TestDoublyLinkedListInsertFront(t *testing.T) {
 }
 
 func TestDoublyLinkedListInsertBack(t *testing.T) {
-	linkedList := NewDoublyLinkedList()
+	linkedList := NewDoublyLinkedList[int]()
 	original := 3
 	expectedElement := 4
 	expectedSize := 4
@@ -469,7 +469,7 @@ func TestDoublyLinkedListInsertBack(t *testing.T) {
 }
 
 func TestSinglyLinkedListPrependingMultipleItems(t *testing.T) {
-	linkedList := NewSinglyLinkedList()
+	linkedList := NewSinglyLinkedList[int]()
 	expectedSize := 3
 
 	linkedList.Prepend(1)
@@ -494,7 +494,7 @@ func TestSinglyLinkedListPrependingMultipleItems(t *testing.T) {
 }
 
 func TestDoublyLinkedListNodeBindings(t *testing.T) {
-	linkedList := NewDoublyLinkedList()
+	linkedList := NewDoublyLinkedList[int]()
 	elements := [6]int{10, 20, 30, 40, 50, 60}
 
 	linkedList.Append(20)
@@ -509,7 +509,7 @@ func TestDoublyLinkedListNodeBindings(t *testing.T) {
 	}
 }
 
-func nodeBindingsCorrect(list *DoublyLinkedList, elements [6]int) bool {
+func nodeBindingsCorrect(list *DoublyLinkedList[int], elements [6]int) bool {
 	current := list.Head
 	if list.Head.Value != elements[0] {
 		return false

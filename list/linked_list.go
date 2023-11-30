@@ -1,26 +1,26 @@
 package list
 
-type LinkedList interface {
-	Append(element int)
-	Prepend(element int)
-	Get(index int) int
-	Insert(element int, index int)
+type LinkedList[T any] interface {
+	Append(element T)
+	Prepend(element T)
+	Get(index int) T
+	Insert(element T, index int)
 	RemoveAt(index int)
-	Poll() int
-	Pop() int
+	Poll() T
+	Pop() T
 }
 
-type SinglyLinkedList struct {
-	Root *SinglyNode
+type SinglyLinkedList[T any] struct {
+	Root *SinglyNode[T]
 	Size int
 }
 
-type SinglyNode struct {
-	Value int
-	Next  *SinglyNode
+type SinglyNode[T any] struct {
+	Value T
+	Next  *SinglyNode[T]
 }
 
-func (l *SinglyLinkedList) Append(element int) {
+func (l *SinglyLinkedList[T]) Append(element T) {
 	if l.Size == 0 {
 		l.Prepend(element)
 		return
@@ -29,7 +29,7 @@ func (l *SinglyLinkedList) Append(element int) {
 		for i := 1; i < l.Size; i++ {
 			current = current.Next
 		}
-		current.Next = &SinglyNode{
+		current.Next = &SinglyNode[T]{
 			Value: element,
 			Next:  nil,
 		}
@@ -37,21 +37,21 @@ func (l *SinglyLinkedList) Append(element int) {
 	l.Size++
 }
 
-func (l *SinglyLinkedList) Prepend(element int) {
-	var next *SinglyNode
+func (l *SinglyLinkedList[T]) Prepend(element T) {
+	var next *SinglyNode[T]
 	if l.Root == nil {
 		next = nil
 	} else {
 		next = l.Root
 	}
-	l.Root = &SinglyNode{
+	l.Root = &SinglyNode[T]{
 		Value: element,
 		Next:  next,
 	}
 	l.Size++
 }
 
-func (l *SinglyLinkedList) Get(index int) int {
+func (l *SinglyLinkedList[T]) Get(index int) T {
 	current := l.Root
 	for i := 0; i < index; i++ {
 		current = current.Next
@@ -59,7 +59,7 @@ func (l *SinglyLinkedList) Get(index int) int {
 	return current.Value
 }
 
-func (l *SinglyLinkedList) Insert(element int, index int) {
+func (l *SinglyLinkedList[T]) Insert(element T, index int) {
 	if l.Size == 0 {
 		l.Prepend(element)
 		return
@@ -68,7 +68,7 @@ func (l *SinglyLinkedList) Insert(element int, index int) {
 	for i := 0; i < index; i++ {
 		current = current.Next
 	}
-	current.Next = &SinglyNode{
+	current.Next = &SinglyNode[T]{
 		Value: current.Value,
 		Next:  current.Next,
 	}
@@ -76,7 +76,7 @@ func (l *SinglyLinkedList) Insert(element int, index int) {
 	l.Size++
 }
 
-func (l *SinglyLinkedList) RemoveAt(index int) {
+func (l *SinglyLinkedList[T]) RemoveAt(index int) {
 	if index == 0 {
 		l.Poll()
 		return
@@ -89,7 +89,7 @@ func (l *SinglyLinkedList) RemoveAt(index int) {
 	l.Size -= 1
 }
 
-func (l *SinglyLinkedList) Poll() int {
+func (l *SinglyLinkedList[T]) Poll() T {
 	if l.Size == 1 {
 		return l.Pop()
 	}
@@ -99,7 +99,7 @@ func (l *SinglyLinkedList) Poll() int {
 	return currentVal
 }
 
-func (l *SinglyLinkedList) Pop() int {
+func (l *SinglyLinkedList[T]) Pop() T {
 	if l.Size == 1 {
 		current := l.Root.Value
 		l.Root = nil
@@ -116,17 +116,17 @@ func (l *SinglyLinkedList) Pop() int {
 	return value
 }
 
-func NewSinglyLinkedList() *SinglyLinkedList {
-	return &SinglyLinkedList{}
+func NewSinglyLinkedList[T any]() *SinglyLinkedList[T] {
+	return &SinglyLinkedList[T]{}
 }
 
-type DoublyLinkedList struct {
-	Head *DoublyNode
-	Tail *DoublyNode
+type DoublyLinkedList[T any] struct {
+	Head *DoublyNode[T]
+	Tail *DoublyNode[T]
 	Size int
 }
 
-func (d *DoublyLinkedList) Append(element int) {
+func (d *DoublyLinkedList[T]) Append(element int) {
 	if d.Size == 0 {
 		d.Prepend(element)
 		d.Tail = d.Head
@@ -136,7 +136,7 @@ func (d *DoublyLinkedList) Append(element int) {
 	for i := 1; i < d.Size; i++ {
 		current = current.Next
 	}
-	current.Next = &DoublyNode{
+	current.Next = &DoublyNode[T]{
 		Value: element,
 		Next:  nil,
 		Prev:  current,
@@ -145,8 +145,8 @@ func (d *DoublyLinkedList) Append(element int) {
 	d.Size++
 }
 
-func (d *DoublyLinkedList) Prepend(element int) {
-	current := &DoublyNode{
+func (d *DoublyLinkedList[T]) Prepend(element int) {
+	current := &DoublyNode[T]{
 		Value: element,
 		Next:  nil,
 		Prev:  nil,
@@ -161,7 +161,7 @@ func (d *DoublyLinkedList) Prepend(element int) {
 	d.Size++
 }
 
-func (d *DoublyLinkedList) Get(index int) int {
+func (d *DoublyLinkedList[T]) Get(index int) int {
 	current := d.Head
 	for i := 0; i < index; i++ {
 		current = current.Next
@@ -169,7 +169,7 @@ func (d *DoublyLinkedList) Get(index int) int {
 	return current.Value
 }
 
-func (d *DoublyLinkedList) Insert(element int, index int) {
+func (d *DoublyLinkedList[T]) Insert(element int, index int) {
 	if index == 0 {
 		d.Prepend(element)
 		return
@@ -181,7 +181,7 @@ func (d *DoublyLinkedList) Insert(element int, index int) {
 	for i := 0; i < index; i++ {
 		current = current.Next
 	}
-	node := &DoublyNode{
+	node := &DoublyNode[T]{
 		Value: element,
 		Next:  current,
 		Prev:  current.Prev,
@@ -191,16 +191,16 @@ func (d *DoublyLinkedList) Insert(element int, index int) {
 	d.Size++
 }
 
-func NewDoublyLinkedList() *DoublyLinkedList {
-	return &DoublyLinkedList{
+func NewDoublyLinkedList[T any]() *DoublyLinkedList[T] {
+	return &DoublyLinkedList[T]{
 		Head: nil,
 		Tail: nil,
 		Size: 0,
 	}
 }
 
-type DoublyNode struct {
+type DoublyNode[T any] struct {
 	Value int
-	Next  *DoublyNode
-	Prev  *DoublyNode
+	Next  *DoublyNode[T]
+	Prev  *DoublyNode[T]
 }
