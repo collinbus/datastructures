@@ -1,5 +1,7 @@
 package tree
 
+import "math"
+
 type BinaryTree[T any] struct {
 	root *Node[T]
 }
@@ -22,6 +24,10 @@ func (b *BinaryTree[T]) IsFull() bool {
 	return isTreeFull[T](b.root)
 }
 
+func (b *BinaryTree[T]) IsPerfect() bool {
+	return isTreePerfect[T](b.root, 1, 1)
+}
+
 func isTreeFull[T any](node *Node[T]) bool {
 	if node.left != nil && !isTreeFull(node.left) {
 		return false
@@ -31,4 +37,15 @@ func isTreeFull[T any](node *Node[T]) bool {
 	}
 	return (node.left == nil && node.right == nil) ||
 		(node.left != nil && node.right != nil)
+}
+
+func isTreePerfect[T any](node *Node[T], level int, depth int) bool {
+	if node.left != nil && !isTreePerfect(node.left, level+1, depth) {
+		return false
+	}
+	if node.right != nil && !isTreePerfect(node.right, level+1, depth) {
+		return false
+	}
+	depth = int(math.Max(float64(depth), float64(level)))
+	return level == depth || (node.left == nil && node.right == nil)
 }
