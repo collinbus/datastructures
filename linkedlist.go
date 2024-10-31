@@ -26,8 +26,13 @@ func NewLinkedList(items []int) *LinkedList {
 }
 
 func (l *LinkedList) Insert(element, index int) {
+	node := NewNode(element)
 	if l.Head == nil {
-		node := NewNode(element)
+		l.Head = node
+		return
+	}
+	if index == 0 {
+		node.Next = l.Head
 		l.Head = node
 		return
 	}
@@ -35,7 +40,6 @@ func (l *LinkedList) Insert(element, index int) {
 	for i := 0; i < index-1; i++ {
 		current = current.Next
 	}
-	node := NewNode(element)
 	if current.Next != nil {
 		node.Next = current.Next
 	}
