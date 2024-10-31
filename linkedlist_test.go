@@ -17,3 +17,19 @@ func TestInitLinkedList(t *testing.T) {
 		current = current.Next
 	}
 }
+
+func TestInsertLinkedList(t *testing.T) {
+	items := []int{1, 2, 4, 5}
+	expectedItems := []int{1, 2, 3, 4, 5}
+	list := NewLinkedList(items)
+
+	list.Insert(3, 2)
+
+	current := list.Head
+	for i := 0; i < len(expectedItems); i++ {
+		if current != nil && current.Value != expectedItems[i] {
+			t.Fatalf("Item at index %d is not matching\n", i)
+		}
+		current = current.Next
+	}
+}

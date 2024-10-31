@@ -35,5 +35,9 @@ func (l *LinkedList) Insert(element, index int) {
 	for i := 0; i < index-1; i++ {
 		current = current.Next
 	}
-	current.Next = NewNode(element)
+	node := NewNode(element)
+	if current.Next != nil {
+		node.Next = current.Next
+	}
+	current.Next = node
 }
