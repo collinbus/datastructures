@@ -49,3 +49,19 @@ func TestInsertFrontLinkedList(t *testing.T) {
 		current = current.Next
 	}
 }
+
+func TestInsertLastLinkedList(t *testing.T) {
+	items := []int{1, 2, 4, 5}
+	expectedItems := []int{1, 2, 4, 5, 6}
+	list := NewLinkedList(items)
+
+	list.Insert(6, 4)
+
+	current := list.Head
+	for i := 0; i < len(expectedItems); i++ {
+		if current != nil && current.Value != expectedItems[i] {
+			t.Fatalf("Item at index %d is not matching\n", i)
+		}
+		current = current.Next
+	}
+}
