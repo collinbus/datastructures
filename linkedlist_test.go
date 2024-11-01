@@ -131,3 +131,40 @@ func TestNextAndPrevValues(t *testing.T) {
 		t.Fatal("third node has invalid pointers")
 	}
 }
+
+func TestNextAndPrevValuesAfterManipulation(t *testing.T) {
+	items := []int{3, 6, 9}
+	list := NewLinkedList(items)
+
+	list.Insert(4, 1)
+	list.RemoveAt(2)
+
+	current := list.Head
+	if current.Prev != nil && current.Next.Value != 4 {
+		t.Fatal("first node has invalid pointers")
+	}
+	current = current.Next
+	if current.Prev.Value != 3 && current.Next.Value != 9 {
+		t.Fatal("second node has invalid pointers")
+	}
+	current = current.Next
+	if current.Prev.Value != 4 && current.Next != nil {
+		t.Fatal("third node has invalid pointers")
+	}
+}
+
+func TestHeadAndTail(t *testing.T) {
+	items := []int{3, 6, 9}
+	
+	list := NewLinkedList(items)
+	list.Insert(1,0)
+	list.RemoveAt(3)
+	
+	if list.Head.Value != 1 && list.Head.Prev != nil && list.Head.Next.Value != 3 {
+		t.Fatal("Head is invalid")
+	}
+	if list.Tail.Value != 6 && list.Tail.Prev.Value != 6 && list.Tail.Next != nil {
+		t.Fatal("Tail is invalid")
+	}
+}
+

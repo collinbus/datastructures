@@ -9,6 +9,7 @@ type Node struct {
 
 type LinkedList struct {
 	Head *Node
+	Tail *Node
 }
 
 type List interface {
@@ -47,6 +48,8 @@ func (l *LinkedList) Insert(element, index int) {
 	if current.Next != nil {
 		node.Next = current.Next
 		current.Next.Prev = node
+	} else {
+		l.Tail = node
 	}
 	node.Prev = current
 	current.Next = node
@@ -60,6 +63,9 @@ func (l *LinkedList) RemoveAt(index int) {
 
 	for i := 0; i < index - 1; i++ {
 		current = current.Next
+	}
+	if current.Next.Next == nil {
+		l.Tail = current.Next
 	}
 	current.Next = current.Next.Next
 }
