@@ -50,6 +50,9 @@ func (l *LinkedList) Insert(element, index int) {
 
 func (l *LinkedList) RemoveAt(index int) {
 	current := l.Head
+	if index == 0 {
+		l.Head = current.Next
+	}
 
 	for i := 0; i < index - 1; i++ {
 		current = current.Next
