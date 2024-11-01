@@ -70,6 +70,13 @@ func (l *LinkedList) RemoveAt(index int) {
 	current.Next = current.Next.Next
 }
 
+func (l *LinkedList) Push(element int) {
+	node := NewNode(element)
+	node.Prev = l.Tail
+	l.Tail.Next = node
+	l.Tail = node
+}
+
 func (l *LinkedList) Pop() int {
 	val := l.Tail.Value
 	l.Tail.Prev.Next = nil

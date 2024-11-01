@@ -50,12 +50,12 @@ func TestInsertFrontLinkedList(t *testing.T) {
 	}
 }
 
-func TestInsertLastLinkedList(t *testing.T) {
+func TestPushList(t *testing.T) {
 	items := []int{1, 2, 4, 5}
 	expectedItems := []int{1, 2, 4, 5, 6}
 	list := NewLinkedList(items)
 
-	list.Insert(6, 4)
+	list.Push(6)
 
 	current := list.Head
 	for i := 0; i < len(expectedItems); i++ {
