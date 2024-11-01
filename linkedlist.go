@@ -1,5 +1,6 @@
 package main
 
+
 type Node struct {
 	Value int
 	Next  *Node
@@ -11,6 +12,7 @@ type LinkedList struct {
 
 type List interface {
 	Insert(element, index int)
+	ReomveAt(index int)
 }
 
 func NewNode(element int) *Node {
@@ -44,4 +46,13 @@ func (l *LinkedList) Insert(element, index int) {
 		node.Next = current.Next
 	}
 	current.Next = node
+}
+
+func (l *LinkedList) RemoveAt(index int) {
+	current := l.Head
+
+	for i := 0; i < index - 1; i++ {
+		current = current.Next
+	}
+	current.Next = current.Next.Next
 }
