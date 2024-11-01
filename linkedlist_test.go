@@ -114,3 +114,20 @@ func TestDeleteLastItemLinkedList(t *testing.T) {
 	}
 }
 
+func TestNextAndPrevValues(t *testing.T) {
+	items := []int{3, 6, 9}
+	list := NewLinkedList(items)
+
+	current := list.Head
+	if current.Prev != nil && current.Next.Value != 6 {
+		t.Fatal("first node has invalid pointers")
+	}
+	current = current.Next
+	if current.Prev.Value != 3 && current.Next.Value != 9 {
+		t.Fatal("second node has invalid pointers")
+	}
+	current = current.Next
+	if current.Prev.Value != 6 && current.Next != nil {
+		t.Fatal("third node has invalid pointers")
+	}
+}

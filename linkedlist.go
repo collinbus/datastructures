@@ -4,6 +4,7 @@ package main
 type Node struct {
 	Value int
 	Next  *Node
+	Prev  *Node
 }
 
 type LinkedList struct {
@@ -35,6 +36,7 @@ func (l *LinkedList) Insert(element, index int) {
 	}
 	if index == 0 {
 		node.Next = l.Head
+		node.Next.Prev = node
 		l.Head = node
 		return
 	}
@@ -44,7 +46,9 @@ func (l *LinkedList) Insert(element, index int) {
 	}
 	if current.Next != nil {
 		node.Next = current.Next
+		current.Next.Prev = node
 	}
+	node.Prev = current
 	current.Next = node
 }
 
