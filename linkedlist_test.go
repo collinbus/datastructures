@@ -98,3 +98,19 @@ func TestDeleteFirstItemLinkedList(t *testing.T) {
 	}
 }
 
+func TestDeleteLastItemLinkedList(t *testing.T) {
+	items := []int{1, 2, 3, 4, 5}
+	list := NewLinkedList(items)
+	expectedItems := []int{1, 2, 3, 4}
+
+	list.RemoveAt(4)
+
+	current := list.Head
+	for i := 0; i < len(expectedItems); i++ {
+		if current != nil && current.Value != expectedItems[i] {
+			t.Fatalf("Item at index %d is not matching\n", i)
+		}
+		current = current.Next
+	}
+}
+
