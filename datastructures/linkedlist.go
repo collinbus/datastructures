@@ -14,7 +14,7 @@ type LinkedList struct {
 
 type List interface {
 	Insert(element, index int)
-	ReomveAt(index int)
+	RemoveAt(index int)
 }
 
 func NewNode(element int) *Node {
