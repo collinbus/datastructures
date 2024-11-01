@@ -69,3 +69,10 @@ func (l *LinkedList) RemoveAt(index int) {
 	}
 	current.Next = current.Next.Next
 }
+
+func (l *LinkedList) Pop() int {
+	val := l.Tail.Value
+	l.Tail.Prev.Next = nil
+	l.Tail = l.Tail.Prev
+	return val
+}

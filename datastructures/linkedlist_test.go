@@ -98,12 +98,13 @@ func TestDeleteFirstItemLinkedList(t *testing.T) {
 	}
 }
 
-func TestDeleteLastItemLinkedList(t *testing.T) {
+func TestPopLinkedList(t *testing.T) {
 	items := []int{1, 2, 3, 4, 5}
 	list := NewLinkedList(items)
 	expectedItems := []int{1, 2, 3, 4}
+	expectedPoppedValue := 5
 
-	list.RemoveAt(4)
+	poppedValue := list.Pop()
 
 	current := list.Head
 	for i := 0; i < len(expectedItems); i++ {
@@ -111,6 +112,9 @@ func TestDeleteLastItemLinkedList(t *testing.T) {
 			t.Fatalf("Item at index %d is not matching\n", i)
 		}
 		current = current.Next
+	}
+	if poppedValue != expectedPoppedValue {
+		t.Fatalf("Expected popped value to be %d but was %d\n", expectedPoppedValue, poppedValue)
 	}
 }
 
