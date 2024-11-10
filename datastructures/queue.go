@@ -29,5 +29,9 @@ func (q *DynamicQueue) Enqueue(item int) {
 func (q *DynamicQueue) Dequeue() int {
 	node := q.front
 	q.front = q.front.Next
+
+	if q.front == nil {
+		q.back = nil
+	}
 	return node.Value
 }
