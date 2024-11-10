@@ -1,12 +1,13 @@
 package datastructures
 
 type DynamicQueue struct {
-	Front *Node
-	Back  *Node
+	front *Node
+	back  *Node
 }
 
 type Queue interface {
 	Enqueue(item int)
+	Dequeue() int
 }
 
 func NewQueue() *DynamicQueue {
@@ -15,12 +16,18 @@ func NewQueue() *DynamicQueue {
 
 func (q *DynamicQueue) Enqueue(item int) {
 	node := NewNode(item)
-	if q.Back == nil {
-		q.Front = node
-		q.Back = node
+	if q.back == nil {
+		q.front = node
+		q.back = node
 		return
 	}
-	q.Back.Next = node
-	node.Prev = q.Back
-	q.Back = node
+	q.back.Next = node
+	node.Prev = q.back
+	q.back = node
+}
+
+func (q *DynamicQueue) Dequeue() int {
+	node := q.front
+	q.front = q.front.Next
+	return node.Value
 }
